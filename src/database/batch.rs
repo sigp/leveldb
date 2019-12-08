@@ -124,9 +124,9 @@ pub trait WritebatchIterator {
 }
 
 extern "C" fn put_callback<K: Key, T: WritebatchIterator<K = K>>(state: *mut c_void,
-                                                                 key: *const i8,
+                                                                 key: *const u8,
                                                                  keylen: size_t,
-                                                                 val: *const i8,
+                                                                 val: *const u8,
                                                                  vallen: size_t) {
     unsafe {
         let iter: &mut T = &mut *(state as *mut T);
@@ -138,7 +138,7 @@ extern "C" fn put_callback<K: Key, T: WritebatchIterator<K = K>>(state: *mut c_v
 }
 
 extern "C" fn deleted_callback<K: Key, T: WritebatchIterator<K = K>>(state: *mut c_void,
-                                                                     key: *const i8,
+                                                                     key: *const u8,
                                                                      keylen: size_t) {
     unsafe {
         let iter: &mut T = &mut *(state as *mut T);

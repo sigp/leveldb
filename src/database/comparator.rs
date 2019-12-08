@@ -59,9 +59,9 @@ unsafe trait InternalComparator : Comparator where Self: Sized {
     }
 
     extern "C" fn compare(state: *mut c_void,
-                          a: *const i8,
+                          a: *const u8,
                           a_len: size_t,
-                          b: *const i8,
+                          b: *const u8,
                           b_len: size_t)
                           -> i32 {
         unsafe {
